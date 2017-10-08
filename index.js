@@ -36,7 +36,7 @@ const aws_region = "eu-west-1";
 const yaml = require('js-yaml');
 const fs = require('fs');
 const http = require ('https');
-const aws = require('aws-sdk');
+//const aws = require('aws-sdk');
 const util = require('util');
 const querystring = require ('querystring');
 
@@ -51,7 +51,7 @@ exports.handler = function(event, context) {
         accessKeyId: aws_accessKeyId,
         secretAccessKey: aws_secretAccessKey
     });
-    var sqs = new aws.SQS().client;
+    
     var queue_base_url = "https://"+aws_region+".queue.amazonaws.com/"+aws_account_id+"/";
     fs.exists(sqs_file, function(exists) {
         if(exists) {
@@ -78,17 +78,22 @@ exports.handler = function(event, context) {
                             for (var queue in queues[j])
                             {
                                 console.log("queue: " + queue + ", limit: " + queues[j][queue]);
-                                sqs.getQueueAttributes({
-                                    QueueUrl: queue_base_url+queue,
-                                    AttributeNames: ["ApproximateNumberOfMessages"]
-                                }, function (err, result) {
-                                
-                                    if (err !== null) {
-                                        console.log(util.inspect(err));
-                                        return;
-                                    }
-                                    console.log(util.inspect(result));
-                                });
+                                if(queues[j][queue] != "x")
+                                {
+                                    var sqs = new AWS.SQS();
+                                    console.log(queue_base_url+queue);
+                                    sqs.getQueueAttributes({
+                                        QueueUrl: queue_base_url+queue,
+                                        AttributeNames: ["ApproximateNumberOfMessages"]
+                                    }, function (err, result) {
+                                    
+                                        if (err !== null) {
+                                            console.log(err);
+                                            return;
+                                        }
+                                        console.log(result);
+                                    });
+                                }
                             }
                         }
                         console.log("############\n");
