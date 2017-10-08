@@ -1,7 +1,6 @@
 
 
 
-console.log('[AWS SQS Monitor]');
 
 /*
  configuration for each condition.
@@ -29,18 +28,31 @@ console.log('[AWS SQS Monitor]');
 // 	path: "/YOUR_PATH",
 // };
 
-yaml = require('js-yaml');
-//var ymal = require('yamljs');
-var fs = require('fs');
-var http = require ('https');
-var querystring = require ('querystring');
+const aws_account_id = "223381404055";
+const aws_accessKeyId = "AKIAJHVAXZU47LIR2BMQ";
+const aws_secretAccessKey = "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";
+const aws_region = "eu-west-1";
 
+const yaml = require('js-yaml');
+const fs = require('fs');
+const http = require ('https');
+const aws = require('aws-sdk');
+const util = require('util');
+const querystring = require ('querystring');
 
 var sqs_file = "/tmp/" + Date.now() + ".yaml";
 var sqs_webfile = "https://raw.githubusercontent.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/master/queues.yaml";
 
+
+
 exports.handler = function(event, context) {
- 
+    aws.config.update({
+        region: aws_region,
+        accessKeyId: aws_accessKeyId,
+        secretAccessKey: aws_secretAccessKey
+    });
+    var sqs = new aws.SQS().client;
+    var queue_base_url = "https://"+aws_region+".queue.amazonaws.com/"+aws_account_id+"/";
     fs.exists(sqs_file, function(exists) {
         if(exists) {
           console.log("File exists. Deleting now ...");
@@ -54,7 +66,34 @@ exports.handler = function(event, context) {
               console.log("YAML loaded::");
               try {
                 var doc = yaml.safeLoad(fs.readFileSync(sqs_file, 'utf8'));
-                console.log(doc);
+                for(i=0;i < doc["sqs"].length; i++)
+                {
+                    team_obj = doc["sqs"][i];
+                    for (var team_name in team_obj) {
+                        console.log("Team: "+team_name+"\n");
+                        queues = team_obj[team_name];
+                        //console.log(queues);
+                        for (j=0;j<queues.length;j++)
+                        {
+                            for (var queue in queues[j])
+                            {
+                                console.log("queue: " + queue + ", limit: " + queues[j][queue]);
+                                sqs.getQueueAttributes({
+                                    QueueUrl: queue_base_url+queue,
+                                    AttributeNames: ["ApproximateNumberOfMessages"]
+                                }, function (err, result) {
+                                
+                                    if (err !== null) {
+                                        console.log(util.inspect(err));
+                                        return;
+                                    }
+                                    console.log(util.inspect(result));
+                                });
+                            }
+                        }
+                        console.log("############\n");
+                    }
+                }
               } catch (e) {
                 console.log("ERROR::");
                 console.log(e);
