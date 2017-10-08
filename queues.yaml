@@ -11,7 +11,7 @@ sqs:
     - test_devops_stats_phone_clicks: 10
     - test_devops_stats_facebook_clicks: 10
 
-  - team4: 
+  - team5: 
     - test_devops_stats_phone_clicks: 10
     - test_devops_stats_facebook_clicks: 10
 

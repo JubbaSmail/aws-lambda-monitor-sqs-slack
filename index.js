@@ -36,7 +36,7 @@ var http = require ('https');
 var querystring = require ('querystring');
 
 
-var sqs_file = "/tmp/queues.yaml"
+var sqs_file = "/tmp/" + Date.now() + ".yaml";
 var sqs_webfile = "https://raw.githubusercontent.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/master/queues.yaml";
 
 exports.handler = function(event, context) {
@@ -53,7 +53,7 @@ exports.handler = function(event, context) {
             file.on('finish', function() {
               console.log("YAML loaded::");
               try {
-                var doc = yaml.safeLoad(fs.readFileSync('/tmp/queues.yaml', 'utf8'));
+                var doc = yaml.safeLoad(fs.readFileSync(sqs_file, 'utf8'));
                 console.log(doc);
               } catch (e) {
                 console.log("ERROR::");
