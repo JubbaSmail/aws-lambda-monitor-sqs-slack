@@ -1,9 +1,7 @@
 
-var http = require('http');
-var ymal = require('yamljs');
-var fs = require('fs');
 
-console.log('[Amazon CloudWatch Notification]');
+
+console.log('[AWS SQS Monitor]');
 
 /*
  configuration for each condition.
@@ -31,16 +29,31 @@ console.log('[Amazon CloudWatch Notification]');
 // 	path: "/YOUR_PATH",
 // };
 
+yaml = require('js-yaml');
+//var ymal = require('yamljs');
+var fs = require('fs');
 var http = require ('https');
 var querystring = require ('querystring');
+
 exports.handler = function(event, context) {
 
     var file = fs.createWriteStream("/tmp/queues.yaml");
     var request = http.get("https://raw.githubusercontent.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/master/queues.yaml", function(response) {
       response.pipe(file);
-      nativeObject = ymal.load('/tmp/queues.yaml');
-      console.log(nativeObject);
-      context.done(null, 'done!');
+      //nativeObject = ymal.load('/tmp/queues.yaml');
+      file.on('finish', function() {
+        console.log("YAML loaded");
+        try {
+          var doc = yaml.safeLoad(fs.readFileSync('/tmp/queues.yaml', 'utf8'));
+          console.log(doc);
+        } catch (e) {
+          console.log("ERROR::");
+          console.log(e);
+        }
+        //console.log(nativeObject);
+        context.done(null, 'done!');
+      });
+      
     });
 
 
