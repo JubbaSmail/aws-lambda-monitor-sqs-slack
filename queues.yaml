@@ -13,13 +13,13 @@ sqs:
 
 sqs_error:
   - team1:
-    test_devops_makelaars_errors
+    - test_devops_makelaars_errors
 
   - team2:
-    test_devops_new_houses_errors
-    test_devops_edited_houses_errors
-    test_devops_removed_houses_errors
+    - test_devops_new_houses_errors
+    - test_devops_edited_houses_errors
+    - test_devops_removed_houses_errors
 
   - team3:
-    test_devops_stats_phone_clicks_errors
-    test_devops_stats_facebook_clicks_errors
+    - test_devops_stats_phone_clicks_errors
+    - test_devops_stats_facebook_clicks_errors

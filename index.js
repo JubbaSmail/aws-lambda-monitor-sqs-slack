@@ -43,8 +43,8 @@ exports.handler = function(event, context) {
  
     fs.exists(sqs_file, function(exists) {
         if(exists) {
-          console.log('File exists. Deleting now ...');
-          fs.unlink('./www/index.html');
+          console.log("File exists. Deleting now ...");
+          fs.unlink(sqs_file);
         } 
         var file = fs.createWriteStream(sqs_file);
         var request = http.get(sqs_webfile, function(response) {
