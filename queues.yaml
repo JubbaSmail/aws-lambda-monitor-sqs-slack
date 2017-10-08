@@ -11,6 +11,10 @@ sqs:
     - test_devops_stats_phone_clicks: 10
     - test_devops_stats_facebook_clicks: 10
 
+  - team4: 
+    - test_devops_stats_phone_clicks: 10
+    - test_devops_stats_facebook_clicks: 10
+
 sqs_error:
   - team1:
     - test_devops_makelaars_errors
