@@ -35,28 +35,36 @@ var fs = require('fs');
 var http = require ('https');
 var querystring = require ('querystring');
 
+
+var sqs_file = "/tmp/queues.yaml"
+var sqs_webfile = "https://raw.githubusercontent.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/master/queues.yaml";
+
 exports.handler = function(event, context) {
-
-    var file = fs.createWriteStream("/tmp/queues.yaml");
-    var request = http.get("https://raw.githubusercontent.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/master/queues.yaml", function(response) {
-      response.pipe(file);
-      //nativeObject = ymal.load('/tmp/queues.yaml');
-      file.on('finish', function() {
-        console.log("YAML loaded");
-        try {
-          var doc = yaml.safeLoad(fs.readFileSync('/tmp/queues.yaml', 'utf8'));
-          console.log(doc);
-        } catch (e) {
-          console.log("ERROR::");
-          console.log(e);
-        }
-        //console.log(nativeObject);
-        context.done(null, 'done!');
+ 
+    fs.exists(sqs_file, function(exists) {
+        if(exists) {
+          console.log('File exists. Deleting now ...');
+          fs.unlink('./www/index.html');
+        } 
+        var file = fs.createWriteStream(sqs_file);
+        var request = http.get(sqs_webfile, function(response) {
+            response.pipe(file);
+            //nativeObject = ymal.load('/tmp/queues.yaml');
+            file.on('finish', function() {
+              console.log("YAML loaded::");
+              try {
+                var doc = yaml.safeLoad(fs.readFileSync('/tmp/queues.yaml', 'utf8'));
+                console.log(doc);
+              } catch (e) {
+                console.log("ERROR::");
+                console.log(e);
+              }
+              //console.log(nativeObject);
+              context.done(null, 'done!');
+            });
+            
+          });
       });
-      
-    });
-
-
 	//console.log(event.Records[0]);
 
 	// parse information
