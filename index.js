@@ -36,7 +36,7 @@ var querystring = require ('querystring');
 exports.handler = function(event, context) {
 
     var file = fs.createWriteStream("/tmp/queues.yaml");
-    var request = http.get("https://raw.githubusercontent.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/master/queues.ymal", function(response) {
+    var request = http.get("https://raw.githubusercontent.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/master/queues.yaml", function(response) {
       response.pipe(file);
       nativeObject = ymal.load('/tmp/queues.yaml');
       console.log(nativeObject);
