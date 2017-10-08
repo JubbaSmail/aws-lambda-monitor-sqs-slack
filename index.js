@@ -1,7 +1,4 @@
 
-
-
-
 /*
  configuration for each condition.
  add any conditions here
@@ -29,88 +26,74 @@
 // };
 
 const aws_account_id = "223381404055";
-const aws_accessKeyId = "AKIAJHVAXZU47LIR2BMQ";
-const aws_secretAccessKey = "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";
+const aws_accessKeyId = "AKIAI5NXVVNN6MMLC56A";
+const aws_secretAccessKey = "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";
 const aws_region = "eu-west-1";
 
 const yaml = require('js-yaml');
 const fs = require('fs');
 const http = require ('https');
-//const aws = require('aws-sdk');
+var AWS = require('aws-sdk');
 const util = require('util');
 const querystring = require ('querystring');
 
 var sqs_file = "/tmp/" + Date.now() + ".yaml";
 var sqs_webfile = "https://raw.githubusercontent.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/master/queues.yaml";
 
-
-
 exports.handler = function(event, context) {
-    aws.config.update({
-        region: aws_region,
+    AWS.config.update({
         accessKeyId: aws_accessKeyId,
-        secretAccessKey: aws_secretAccessKey
+        secretAccessKey: aws_secretAccessKey,
+        region: aws_region
     });
+    var sqs = new AWS.SQS();
     
     var queue_base_url = "https://"+aws_region+".queue.amazonaws.com/"+aws_account_id+"/";
-    fs.exists(sqs_file, function(exists) {
-        if(exists) {
-          console.log("File exists. Deleting now ...");
-          fs.unlink(sqs_file);
-        } 
-        var file = fs.createWriteStream(sqs_file);
-        var request = http.get(sqs_webfile, function(response) {
-            response.pipe(file);
-            //nativeObject = ymal.load('/tmp/queues.yaml');
-            file.on('finish', function() {
-              console.log("YAML loaded::");
-              try {
-                var doc = yaml.safeLoad(fs.readFileSync(sqs_file, 'utf8'));
-                for(i=0;i < doc["sqs"].length; i++)
-                {
-                    team_obj = doc["sqs"][i];
-                    for (var team_name in team_obj) {
-                        console.log("Team: "+team_name+"\n");
-                        queues = team_obj[team_name];
-                        //console.log(queues);
-                        for (j=0;j<queues.length;j++)
+    var file = fs.createWriteStream(sqs_file);
+    var request = http.get(sqs_webfile, function(response) {
+        response.pipe(file);
+        file.on('finish', function() {
+            console.log("YAML loaded::");
+            try {
+            var doc = yaml.safeLoad(fs.readFileSync(sqs_file, 'utf8'));
+            for(i=0;i < doc["sqs"].length; i++)
+            {
+                team_obj = doc["sqs"][i];
+                for (var team_name in team_obj) {
+                    console.log("Team: "+team_name+"\n");
+                    queues = team_obj[team_name];
+                    for (j=0;j<queues.length;j++)
+                    {
+                        for (var queue in queues[j])
                         {
-                            for (var queue in queues[j])
+                            console.log("queue: " + queue + ", limit: " + queues[j][queue]);
+                            if(queues[j][queue] != "x")
                             {
-                                console.log("queue: " + queue + ", limit: " + queues[j][queue]);
-                                if(queues[j][queue] != "x")
-                                {
-                                    var sqs = new AWS.SQS();
-                                    console.log(queue_base_url+queue);
-                                    sqs.getQueueAttributes({
-                                        QueueUrl: queue_base_url+queue,
-                                        AttributeNames: ["ApproximateNumberOfMessages"]
-                                    }, function (err, result) {
-                                    
-                                        if (err !== null) {
-                                            console.log(err);
-                                            return;
-                                        }
-                                        console.log(result);
-                                    });
-                                }
+                                
+                                console.log(queue_base_url+queue);
+                                sqs.getQueueAttributes({
+                                    QueueUrl: queue_base_url+queue,
+                                    AttributeNames: ["ApproximateNumberOfMessages"]
+                                }, function (err, result) {
+                                    console.log("$$$$$$$$$$$$");
+                                    if (err !== null) {
+                                        context.done('error', err);
+                                    }
+                                    console.log("Result:"+result);
+                                });
                             }
                         }
-                        console.log("############\n");
                     }
+                    console.log("############\n");
                 }
-              } catch (e) {
-                console.log("ERROR::");
-                console.log(e);
-              }
-              //console.log(nativeObject);
-              context.done(null, 'done!');
-            });
-            
-          });
-      });
-	//console.log(event.Records[0]);
-
+            }
+            } catch (err) {
+                context.done('error', err);
+            }
+            //context.done(null, 'done!');
+        });
+        
+    });
 	// parse information
 	// var message = event.Records[0].Sns.Message;
 	// var subject = event.Records[0].Sns.Subject;
