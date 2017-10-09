@@ -48,7 +48,8 @@ Then click on `+ Add an app`, or go to channel setting if didn't find the link:
 <img width="500" src="https://github.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/raw/master/imgs/s1-2.png"/>
 
 This will open Slack Admin panel on the brwoser, you have to have admin permession on your Slack team to access it, click on `Build`:
-<img width="500" src="https://github.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/raw/master/imgs/s1-3.png"/>
+
+<img width="300" src="https://github.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/raw/master/imgs/s1-3.png"/>
 
 Click `Start Building` then `Create App`, chose your team and name the app `AWS-Watcher`; if you wish to have diffrent name you should change the name from the source code as well:
 <img width="500" src="https://github.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/raw/master/imgs/s1-4.png"/>
@@ -60,13 +61,16 @@ Activate it by swiping to `On`, then click the bottom button `Add New Webhook to
 <img width="500" src="https://github.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/raw/master/imgs/s1-6.png"/>
 
 Select your team channel, to allow the app to post on it:
-<img width="500" src="https://github.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/raw/master/imgs/s1-7.png"/>
+
+<img width="300" src="https://github.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/raw/master/imgs/s1-7.png"/>
 
 Repeat the steps for all your teams defined in the YAML file, then copy all the Webhook URLs:
+
 <img width="500" src="https://github.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/raw/master/imgs/s1-8.png"/>
 
 Go Back to `Basic Information`:
-<img width="500" src="https://github.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/raw/master/imgs/s1-9.png"/>
+
+<img width="250" src="https://github.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/raw/master/imgs/s1-9.png"/>
 
 Under `Display Information` add description, icon and backgorund color to your Slack App, then hit `Save Changes`:
 <img width="500" src="https://github.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/raw/master/imgs/s1-10.png"/>
