@@ -62,7 +62,7 @@ Setup steps:
 
 7. Select your team channel, to allow the app to post on it:
 
-<img width="300" src="https://github.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/raw/master/imgs/s1-7.png"/>
+<img width="400" src="https://github.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/raw/master/imgs/s1-7a.png"/>
 
 8. Repeat the steps for all your teams defined in the YAML file, then copy all the Webhook URLs:
 
