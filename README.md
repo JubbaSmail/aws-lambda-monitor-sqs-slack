@@ -99,10 +99,10 @@ Setup steps:
 1. On AWS Console, select a region, go to Lambda, click on `Author from scratch`: 
 <img width="900" src="https://github.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/raw/master/imgs/s4-1.png"/>
 
-2. Name the function `monitor-sqs-slack`, select `Choose an existing role` or Role, and `service-role/sqspoller` for Existing role, then hist `Create function`:
+2. Name the function `monitor-sqs-slack`, select `Choose an existing role` on Role, and `service-role/sqspoller` for Existing role, then hit `Create function`:
 <img width="900" src="https://github.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/raw/master/imgs/s4-2.png"/>
 
-3. Compress the file `index.js` and the directory `node_modules` to a zaip file:
+3. Compress the file `index.js` and the directory `node_modules` to a zip file:
 <img width="500" src="https://github.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/raw/master/imgs/s4-4.png"/>
 
 4. Back to AWS console, on `Code entry type`, select `Upload a .ZIP file`, select the ZIP file from your machine:
@@ -145,4 +145,4 @@ aws sqs send-message --queue-url https://eu-west-1.queue.amazonaws.com/223381404
 <img width="900" src="https://github.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/raw/master/imgs/s5-3.png"/>
 
 
-# beautiful, isn't it !!
+## beautiful, isn't it !!
