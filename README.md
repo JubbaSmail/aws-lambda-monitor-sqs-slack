@@ -41,41 +41,41 @@ Setup steps:
 - Test it.
 
 ### First, let's start by creating a Slack App:
-let's say your have the following Slack channels: `team1`, `team2`,`team3`; where the channel name is the same as your team name defined in the YAML file. if not, let's create one:
+1. let's say your have the following Slack channels: `team1`, `team2`,`team3`; where the channel name is the same as your team name defined in the YAML file. if not, let's create one:
 <img width="500" src="https://github.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/raw/master/imgs/s1-1.png"/>
 
-Then click on `+ Add an app`, or go to channel setting if didn't find the link:
+2. Then click on `+ Add an app`, or go to channel setting if didn't find the link:
 <img width="500" src="https://github.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/raw/master/imgs/s1-2.png"/>
 
-This will open Slack Admin panel on the brwoser, you have to have admin permession on your Slack team to access it, click on `Build`:
+3. This will open Slack Admin panel on the brwoser, you have to have admin permession on your Slack team to access it, click on `Build`:
 
 <img width="300" src="https://github.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/raw/master/imgs/s1-3.png"/>
 
-Click `Start Building` then `Create App`, chose your team and name the app `AWS-Watcher`; if you wish to have diffrent name you should change the name from the source code as well:
+4. Click `Start Building` then `Create App`, chose your team and name the app `AWS-Watcher`; if you wish to have diffrent name you should change the name from the source code as well:
 <img width="500" src="https://github.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/raw/master/imgs/s1-4.png"/>
 
-On `Basic Information` click `Incoming Webhooks` under `Add features and functionality`:
+5. On `Basic Information` click `Incoming Webhooks` under `Add features and functionality`:
 <img width="500" src="https://github.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/raw/master/imgs/s1-5.png"/>
 
-Activate it by swiping to `On`, then click the bottom button `Add New Webhook to Workspace`
+6. Activate it by swiping to `On`, then click the bottom button `Add New Webhook to Workspace`
 <img width="500" src="https://github.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/raw/master/imgs/s1-6.png"/>
 
-Select your team channel, to allow the app to post on it:
+7. Select your team channel, to allow the app to post on it:
 
 <img width="300" src="https://github.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/raw/master/imgs/s1-7.png"/>
 
-Repeat the steps for all your teams defined in the YAML file, then copy all the Webhook URLs:
+8. Repeat the steps for all your teams defined in the YAML file, then copy all the Webhook URLs:
 
 <img width="500" src="https://github.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/raw/master/imgs/s1-8.png"/>
 
-Go Back to `Basic Information`:
+9. Go Back to `Basic Information`:
 
 <img width="250" src="https://github.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/raw/master/imgs/s1-9.png"/>
 
-Under `Display Information` add description, icon and backgorund color to your Slack App, then hit `Save Changes`:
+10. Under `Display Information` add description, icon and backgorund color to your Slack App, then hit `Save Changes`:
 <img width="500" src="https://github.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/raw/master/imgs/s1-10.png"/>
 
-Finally, go back to your team Slack channel, you should see the integration message:
+11. Finally, go back to your team Slack channel, you should see the integration message:
 <img width="500" src="https://github.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/raw/master/imgs/s1-11.png"/>
 
 ### Second, reate AWS Queues and the IAM user:
