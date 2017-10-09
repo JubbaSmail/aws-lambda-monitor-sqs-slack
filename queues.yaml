@@ -2,7 +2,7 @@ sqs:
   - team1:
     - test_devops_makelaars: x
     - test_devops_makelaars_errors: x
-    - edited_houses: 10
+    - edited_houses: 0
     - edited_houses_errors: 0
 
   - team2:
@@ -12,7 +12,7 @@ sqs:
     - test_devops_new_houses_errors: x
     - test_devops_edited_houses_errors: x
     - test_devops_removed_houses_errors: x
-    - removed_houses: 10
+    - removed_houses: 0
     - removed_houses_errors: 0
 
   - team3: 

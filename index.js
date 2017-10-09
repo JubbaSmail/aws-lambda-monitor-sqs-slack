@@ -53,38 +53,44 @@ exports.handler = function(event, context) {
     var request = http.get(sqs_webfile, function(response) {
         response.pipe(file);
         file.on('finish', function() {
-            console.log("YAML loaded::");
+            //console.log("YAML loaded::");
             try {
             var doc = yaml.safeLoad(fs.readFileSync(sqs_file, 'utf8'));
             for(i=0;i < doc["sqs"].length; i++)
             {
                 team_obj = doc["sqs"][i];
                 for (var team_name in team_obj) {
-                    console.log("Team: "+team_name+"\n");
+                    //console.log("Team: "+team_name+"\n");
                     queues = team_obj[team_name];
                     for (j=0;j<queues.length;j++)
                     {
                         for (var queue in queues[j])
                         {
-                            console.log("queue: " + queue + ", limit: " + queues[j][queue]);
+							//console.log("queue: " + queue + ", limit: " + queues[j][queue]);
+							var limit = queues[j][queue];
                             if(queues[j][queue] != "x")
                             {
-                                
-                                console.log(queue_base_url+queue);
+                                //console.log(queue_base_url+queue);
                                 sqs.getQueueAttributes({
                                     QueueUrl: queue_base_url+queue,
                                     AttributeNames: ["ApproximateNumberOfMessages"]
                                 }, function (err, result) {
-                                    console.log("$$$$$$$$$$$$");
+                                    //console.log("$$$$$$$$$$$$");
                                     if (err !== null) {
                                         context.done('error', err);
-                                    }
-                                    console.log("Result:"+result);
-                                });
+									}
+									var msg_count = parseInt(stripAlphaChars(util.inspect(result["Attributes"]["ApproximateNumberOfMessages"])),10);
+									//console.log("Team: "+this.team_name+", Queue: " + this.queue + ", length:"+ msg_count+", limit: " +this.limit);
+									if(msg_count > this.limit)
+									{
+										alert_msg = "The queue: " + this.queue + " has " + msg_count + "messages!";
+										sendSlackAlert(this.team_name, alert_msg);
+									}
+								}.bind({team_name: team_name,queue: queue,limit:limit})
+							    );
                             }
                         }
                     }
-                    console.log("############\n");
                 }
             }
             } catch (err) {
@@ -172,3 +178,13 @@ exports.handler = function(event, context) {
 	// req.write(postData);
 	// req.end();
 };
+
+function stripAlphaChars(source) { 
+	var out = source.replace(/[^0-9]/g, ''); 
+	return out; 
+}
+
+function sendSlackAlert(channel,msg)
+{
+	console.log("Hi "+channel+" "+msg);
+}
