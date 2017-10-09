@@ -1,5 +1,17 @@
 # aws-lambda-monitor-sqs-slack
 AWS Lambda function to monitor SQS queue to a Slack channel
+![alt text](imgs/sqs.png "icons")
+![alt text](imgs/lambda.png "icons")
+![alt text](imsg/slack.png "icons")
+
+# Problem:
+
+There are some SQS queues on amazon (+/- 10 queues, but the number of queues is growing every month). Queues are for different applications, different teams, and have different characteristics (error queues, different purposes, different thresholds etc.). The teams are responsible for adding new queues and specifying which queues are applicable to be monitored.
+
+As a DevOps team we would like to monitor these queues by providing an automation solution which creates a monitor per queue according to a definition file where the queues are specified. So that we can be alerted whenever something goes wrong with the queues.
+
+# Solution
+Most IT people prefer Slack as comunication platfrom between teams
 
 https://learn.getgrav.org/advanced/yaml
 
