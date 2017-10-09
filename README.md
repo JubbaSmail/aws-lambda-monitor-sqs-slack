@@ -145,4 +145,4 @@ aws sqs send-message --queue-url https://eu-west-1.queue.amazonaws.com/223381404
 <img width="900" src="https://github.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/raw/master/imgs/s5-3.png"/>
 
 
-
+# beautiful, isn't it !!
