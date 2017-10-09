@@ -92,7 +92,7 @@ Setup steps:
 <img width="500" src="https://github.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/raw/master/imgs/s2-4.png"/>
 
 ### Third, Add the keys to Lambda:
-1. Clone or Download this repo, open `index.js`, on top of the file you need to edit the variable of Slack Webhook URL and AWS keys:
+1. Clone or Download this repo, open `index.js`, on top of the file you need to edit the variables of Slack Webhook URL and AWS keys:
 <img width="900" src="https://github.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/raw/master/imgs/s3-1.png"/>
 
 ### Fourth, Create and Deploy AWS Lambda function:
