@@ -1,8 +1,8 @@
 # aws-lambda-monitor-sqs-slack
 AWS Lambda function to monitor SQS queue to a Slack channel
-![alt text](imgs/sqs.png "icons")
-![alt text](imgs/lambda.png "icons")
-![alt text](imgs/slack.png "icons")
+<img width="250" src="https://github.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/raw/master/imgs/sqs.png"/>
+<img width="250" src="https://github.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/raw/master/imgs/lambda.png"/>
+<img width="250" src="https://github.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/raw/master/imgs/slack.png"/>
 
 # Problem:
 
