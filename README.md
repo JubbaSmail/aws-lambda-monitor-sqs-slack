@@ -135,7 +135,7 @@ aws sqs list-queues
 ```
 <img width="900" src="https://github.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/raw/master/imgs/s5-1.png"/>
 
-4. Try to send message to on of ERROR queue:
+4. Try to send message to one of the ERROR queues:
 ```bash
 aws sqs send-message --queue-url https://eu-west-1.queue.amazonaws.com/223381404055/test_devops_edited_houses_errors --message-body "this is an error message"  --message-attributes file://msg.json
 ```
