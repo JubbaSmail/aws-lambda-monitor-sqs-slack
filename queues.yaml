@@ -1,22 +1,18 @@
 sqs:
   - team1:
-    - test_devops_makelaars: x
-    - test_devops_makelaars_errors: x
-    - edited_houses: 0
-    - edited_houses_errors: 0
+    - test_devops_makelaars: 10
+    - test_devops_makelaars_errors: 0
 
   - team2:
-    - test_devops_new_houses: x
+    - test_devops_new_houses: 10
     - test_devops_edited_houses: x
     - test_devops_removed_houses: x
-    - test_devops_new_houses_errors: x
-    - test_devops_edited_houses_errors: x
-    - test_devops_removed_houses_errors: x
-    - removed_houses: 0
-    - removed_houses_errors: 0
+    - test_devops_new_houses_errors: 0
+    - test_devops_edited_houses_errors: 0
+    - test_devops_removed_houses_errors: 0
 
   - team3: 
-    - test_devops_stats_phone_clicks: x
-    - test_devops_stats_facebook_clicks: x
-    - test_devops_stats_phone_clicks_errors: x
-    - test_devops_stats_facebook_clicks_errors: x
+    - test_devops_stats_phone_clicks: 25
+    - test_devops_stats_facebook_clicks: 25
+    - test_devops_stats_phone_clicks_errors: 0
+    - test_devops_stats_facebook_clicks_errors: 0

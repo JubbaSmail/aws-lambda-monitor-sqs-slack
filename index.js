@@ -1,35 +1,16 @@
-
-/*
- configuration for each condition.
- add any conditions here
-*/
-// var ALARM_CONFIG = [
-// 	{
-// 		condition: "OK",
-// 		channel: "#cloudwatch",
-// 		mention: "<@here>",
-// 		color: "#21ff9f",
-// 		severity: "INFO"
-// 	},
-// 	{
-// 		condition: "ALARM",
-// 		channel: "#cloudwatch",
-// 		mention: "<@here>",
-// 		color: "#F35A00",
-// 		severity: "CRITICAL"
-// 	}
-	
-// ];
-
-// var SLACK_CONFIG = {
-// 	path: "/YOUR_PATH",
-// };
-
+var SLACK_CONFIG = {
+	path: {"team1":"/services/T4Y13S6F2/B7FCEPM36/ANgYSXVMp2kt7WI5W1Sae1vk",
+		   "team2":"/services/T4Y13S6F2/B7GDC84KZ/EEWYxcCQhZXlzue7fDlRnNSt",
+		   "team3":"/services/T4Y13S6F2/B7EM3B5R6/hFun4y2HZgG2Sh1GHqAd3ZFU"},
+	username: "AWS-Watcher"
+};
 const aws_account_id = "223381404055";
 const aws_accessKeyId = "AKIAI5NXVVNN6MMLC56A";
 const aws_secretAccessKey = "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";
 const aws_region = "eu-west-1";
-
+var sqs_webfile = "https://raw.githubusercontent.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/master/queues.yaml";
+//#######################################################
+//#######################################################
 const yaml = require('js-yaml');
 const fs = require('fs');
 const http = require ('https');
@@ -38,7 +19,6 @@ const util = require('util');
 const querystring = require ('querystring');
 
 var sqs_file = "/tmp/" + Date.now() + ".yaml";
-var sqs_webfile = "https://raw.githubusercontent.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/master/queues.yaml";
 
 exports.handler = function(event, context) {
     AWS.config.update({
@@ -83,7 +63,10 @@ exports.handler = function(event, context) {
 									//console.log("Team: "+this.team_name+", Queue: " + this.queue + ", length:"+ msg_count+", limit: " +this.limit);
 									if(msg_count > this.limit)
 									{
-										alert_msg = "The queue: " + this.queue + " has " + msg_count + "messages!";
+										var messages = "` messages!";
+										if(msg_count == 1)
+											messages = "` message!"
+										alert_msg = "The queue: `" + this.queue + "` has `" + msg_count + messages;
 										sendSlackAlert(this.team_name, alert_msg);
 									}
 								}.bind({team_name: team_name,queue: queue,limit:limit})
@@ -100,91 +83,60 @@ exports.handler = function(event, context) {
         });
         
     });
-	// parse information
-	// var message = event.Records[0].Sns.Message;
-	// var subject = event.Records[0].Sns.Subject;
-	// var timestamp = event.Records[0].Sns.Timestamp;
-
-	// // vars for final message
-	// var channel;
-	// var severity;
-	// var color;
-
-	// // create post message
-	// var s1 = subject.split(' ');
-	// var s2 = s1[1].split('awsroute53');
-	// var alarmMessage = "`"+s2[0]+"`";
-
-	// // check subject for condition
-	// for (var i=0; i < ALARM_CONFIG.length; i++) {
-	// 	var row = ALARM_CONFIG[i];
-	// 	console.log(row);
-	// 	if (subject.match(row.condition)) {
-	// 		console.log("Matched condition: "+row.condition);
-    //         		if(row.condition=="ALARM")
-	// 		    alarmMessage = row.mention+": "+alarmMessage+" "+" is not responding for the last 5 mins.\n";
-	// 		else if(row.condition=="OK")
-	// 		    alarmMessage = row.mention+": "+alarmMessage+" "+" is up now.\n";
-	// 		else
-	// 		    alarmMessage = alarmMessage;
-	// 		channel = row.channel;
-	// 		severity = row.severity;
-	// 		color = row.color;
-	// 		break;
-	// 	}
-	// }
-
-	// if (!channel) {
-	// 	console.log("Could not find condition.");
-	// 	context.done('error', "Invalid condition");
-	// }
-
-	// var payloadStr = JSON.stringify({
-	// "attachments": [
-	// 	{
-	// 		"fallback": alarmMessage,
-	// 		"text": alarmMessage,
-	// 		"mrkdwn_in": ["text"],
-	// 		"username": "AWS-CloudWatch",
-	// 		"color": color
-	// 	}
-	// ],
-	// 	"channel":channel
-	// });
-	// var postData = querystring.stringify({
-	//   "payload": payloadStr
-	// });
-	// console.log(postData);
-	// var options = {
-	// 	hostname: "hooks.slack.com",
-	// 	port: 443,
-	// 	path: SLACK_CONFIG.path,
-	// 	method: 'POST',
-	// 	headers: {
-	// 		'Content-Type': 'application/x-www-form-urlencoded',
-	// 		'Content-Length': postData.length
-	// 	}
-	// };
-
-	// var req = http.request(options, function(res) {
-	// 	console.log("Got response: " + res.statusCode);
-	// 	res.on("data", function(chunk) {
-	// 		console.log('BODY: '+chunk);
-	// 		context.done(null, 'done!');
-	// 	});
-	// }).on('error', function(e) {
-	// 	context.done('error', e);
-	// });
-	// req.write(postData);
-	// req.end();
 };
+
 
 function stripAlphaChars(source) { 
 	var out = source.replace(/[^0-9]/g, ''); 
 	return out; 
 }
 
+
+
 function sendSlackAlert(channel,msg)
 {
 	console.log("Hi "+channel+" "+msg);
+	var mention = "<@channel>";
+	var severity = "INFO";
+	var color = "#F35A00";
+
+	var alarmMessage = mention+": "+ msg;
+	var payloadStr = JSON.stringify({
+		"attachments": [
+			{
+				"fallback": alarmMessage,
+				"text": alarmMessage,
+				"mrkdwn_in": ["text"],
+				"username": SLACK_CONFIG.username,
+				"color": color
+			}
+		],
+			"channel":"#"+channel
+		});
+		var postData = querystring.stringify({
+		"payload": payloadStr
+		});
+		console.log(postData);
+		var options = {
+			hostname: "hooks.slack.com",
+			port: 443,
+			path: SLACK_CONFIG.path[channel],
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded',
+				'Content-Length': postData.length
+			}
+		};
+
+		var req = http.request(options, function(res) {
+			console.log("Got response: " + res.statusCode);
+			res.on("data", function(chunk) {
+				console.log('BODY: '+chunk);
+				context.done(null, 'done!');
+			});
+		}).on('error', function(e) {
+			context.done('error', e);
+		});
+		req.write(postData);
+		req.end();
 }
