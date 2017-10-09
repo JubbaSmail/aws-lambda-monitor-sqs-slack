@@ -78,11 +78,11 @@ Setup steps:
 11. Finally, go back to your team Slack channel, you should see the integration message:
 <img width="500" src="https://github.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/raw/master/imgs/s1-11.png"/>
 
-### Second, reate AWS Queues and the IAM user:
+### Second, create AWS Queues and the IAM user:
 
 ### Third, Add the keys to Lambda:
 
-### Fourth, Create AWS function:
+### Fourth, Create and Deploy AWS Lambda function:
 
 ### Finally, Test:
 
