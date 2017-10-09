@@ -85,7 +85,7 @@ Setup steps:
 2. Again on AWS Console, go to `IAM`, and create a new user with `Programmatic access`:
 <img width="900" src="https://github.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/raw/master/imgs/s2-2.png"/>
 
-3. Click Next, select `Attach exisiting policies directly`, search for `sqs`, then select `AmazonSQSFullAccess`, this will aloow this user to access the queues:
+3. Click Next, select `Attach exisiting policies directly`, search for `sqs`, then select `AmazonSQSFullAccess`, this will allow this user to access the queues:
 <img width="900" src="https://github.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/raw/master/imgs/s2-3.png"/>
 
 4. Click Next, copy the Access Key ID and Secret access key, we gonna use them in AWS Lambda function:
