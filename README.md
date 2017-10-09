@@ -49,7 +49,7 @@ Setup steps:
 
 3. This will open Slack Admin panel on the browser; you have to have admin permission on your Slack team to access it, click on `Build`:
 
-<img width="300" src="https://github.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/raw/master/imgs/s1-3.png"/>
+<img width="500" src="https://github.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/raw/master/imgs/s1-3.png"/>
 
 4. Click `Start Building` then `Create App`, chose your team and name the app `AWS-Watcher`; if you wish to have a diffrent name you should change the name in the source code as well:
 <img width="500" src="https://github.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/raw/master/imgs/s1-4.png"/>
