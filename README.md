@@ -2,7 +2,7 @@
 AWS Lambda function to monitor SQS queue to a Slack channel
 ![alt text](imgs/sqs.png "icons")
 ![alt text](imgs/lambda.png "icons")
-![alt text](imsg/slack.png "icons")
+![alt text](imgs/slack.png "icons")
 
 # Problem:
 
