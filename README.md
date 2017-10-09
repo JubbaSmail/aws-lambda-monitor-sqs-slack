@@ -29,10 +29,18 @@ A team can define thier queues in this simple YAML format:
    ```
 The ERROR queue will have limit value `0`, where you can use `x` for the queue you want to skip.
 
-AWS Lambda function will run every minute to check the defined queue in the YAML file stored in [GITHUB](https://github.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/blob/master/queues.yaml).
+AWS Lambda function will run every minute to check the defined queue in the YAML file stored in [GITHUB](https://github.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/blob/master/queues.yaml), where stakeholder can edit it easily.
 
+# Setup
 
+Setup steps:
+- Create Slack App and allow it to post to a team channel.
+- Create AWS IAM user and get the secret key.
+- Edit the keys in Lambda source code.
+- Create AWS function and delopy the code.
+- Test it.
 
+## First, let's start by creating a Slack App
 
 
 
