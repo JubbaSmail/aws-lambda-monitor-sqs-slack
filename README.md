@@ -19,13 +19,13 @@ YAML is a human-readable structured data format. It is less complex and ungainly
 
 A team can define thier queues in this simple YAML format:
    ```YAML
-     - team2:
-        - test_devops_new_houses: 10
-        - test_devops_edited_houses: x
-        - test_devops_removed_houses: x
-        - test_devops_new_houses_errors: 0
-        - test_devops_edited_houses_errors: 0
-        - test_devops_removed_houses_errors: 0
+   - team2:
+     - test_devops_new_houses: 10
+     - test_devops_edited_houses: x
+     - test_devops_removed_houses: x
+     - test_devops_new_houses_errors: 0
+     - test_devops_edited_houses_errors: 0
+     - test_devops_removed_houses_errors: 0
    ```
 
 https://learn.getgrav.org/advanced/yaml
