@@ -40,7 +40,7 @@ Setup steps:
 - Create AWS function and delopy the code.
 - Test it.
 
-## First, let's start by creating a Slack App
+### First, let's start by creating a Slack App
 
 
 
