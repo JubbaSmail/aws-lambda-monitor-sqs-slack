@@ -12,8 +12,9 @@ As a DevOps team we would like to monitor these queues by providing an automatio
 # Solution
 Most IT people prefer Slack as comunication platfrom between teams, sending notification to a team Slack channel is a good why to integrate between alarting system and team comunication.
 
-For definition file, I prefered to use YAML!! 
-<img width="200" src="https://github.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/raw/master/imgs/yaml.png"/>
+For definition file, I prefered to use 
+<img width="50" src="https://github.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/raw/master/imgs/yaml.png"/>
+
 YAML is a human-readable structured data format. It is less complex and ungainly than XML or JSON, but provides similar capabilities. It essentially allows you to provide powerful configuration settings.
 
 https://learn.getgrav.org/advanced/yaml
