@@ -64,7 +64,7 @@ Setup steps:
 
 <img width="400" src="https://github.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/raw/master/imgs/s1-7a.png"/>
 
-8. Repeat the steps for all your teams defined in the YAML file, then copy all the Webhook URLs:
+8. Repeat the steps for all your teams defined in the YAML file, then copy all the Webhook URLs, we gonna use it in Lambda source code:
 
 <img width="500" src="https://github.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/raw/master/imgs/s1-8.png"/>
 
@@ -92,16 +92,57 @@ Setup steps:
 <img width="500" src="https://github.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/raw/master/imgs/s2-4.png"/>
 
 ### Third, Add the keys to Lambda:
+1. Clone or Download this repo, open `index.js`, on top of the file you need to edit the variable of Slack Webhook URL and AWS keys:
+<img width="900" src="https://github.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/raw/master/imgs/s3-1.png"/>
 
 ### Fourth, Create and Deploy AWS Lambda function:
+1. On AWS Console, select a region, go to Lambda, click on `Author from scratch`: 
+<img width="900" src="https://github.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/raw/master/imgs/s4-1.png"/>
+
+2. Name the function `monitor-sqs-slack`, select `Choose an existing role` or Role, and `service-role/sqspoller` for Existing role, then hist `Create function`:
+<img width="900" src="https://github.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/raw/master/imgs/s4-2.png"/>
+
+3. Compress the file `index.js` and the directory `node_modules` to a zaip file:
+<img width="500" src="https://github.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/raw/master/imgs/s4-4.png"/>
+
+4. Back to AWS console, on `Code entry type`, select `Upload a .ZIP file`, select the ZIP file from your machine:
+<img width="900" src="https://github.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/raw/master/imgs/s4-3.png"/>
+
+5. On `Triggers`, click, `Add trigger`:
+<img width="900" src="https://github.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/raw/master/imgs/s4-6.png"/>
+
+6. On `Rule`, select `Create a new rule`, for `Rule name` type `everymin`, for `Rule type` choose `Schedule expression`, type `rate(1 minute)`, then click `Submit`:
+<img width="900" src="https://github.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/raw/master/imgs/s4-7.png"/>
+
+7. Click `Save`:
+<img width="900" src="https://github.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/raw/master/imgs/s4-5.png"/>
+
+Congrates, you are ready to test now!!
 
 ### Finally, Test:
-
-
+You can test using AWS Console or AWS CLI, I will show you how to test using the CLI:
+1. Download `aws-cli`, on Mac OS X, you can type this command if you have [Brew](https://brew.sh)
+```bash
 brew install aws-cli
-
+```
+2. Add AWS secret keys to aws cli:
+```bash
+aws configure
+```
+3. Check if you can list SQS queues:
+```bash
 aws sqs list-queues
+```
+<img width="900" src="https://github.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/raw/master/imgs/s5-1.png"/>
 
+4. Try to send message to on of ERROR queue:
+```bash
 aws sqs send-message --queue-url https://eu-west-1.queue.amazonaws.com/223381404055/test_devops_edited_houses_errors --message-body "this is an error message"  --message-attributes file://msg.json
+```
+<img width="900" src="https://github.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/raw/master/imgs/s5-2.png"/>
 
-aws sqs get-queue-attributes --queue-url https://eu-west-1.queue.amazonaws.com/223381404055/edited_houses  --attribute-names ApproximateNumberOfMessages ApproximateNumberOfMessagesDelayed ApproximateNumberOfMessagesNotVisible
+5. In a minute, your should see the alert on your team Slack channel:
+<img width="900" src="https://github.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/raw/master/imgs/s5-3.png"/>
+
+
+
