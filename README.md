@@ -27,8 +27,14 @@ A team can define thier queues in this simple YAML format:
      - test_devops_edited_houses_errors: 0
      - test_devops_removed_houses_errors: 0
    ```
+The ERROR queue will have limit value `0`, where you can use `x` for the queue you want to skip.
 
-https://learn.getgrav.org/advanced/yaml
+AWS Lambda function will run every minute to check the defined queue in the YAML file stored in [GITHUB](https://github.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/blob/master/queues.yaml).
+
+
+
+
+
 
 brew install aws-cli
 
