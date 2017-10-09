@@ -109,7 +109,7 @@ Setup steps:
 <img width="900" src="https://github.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/raw/master/imgs/s4-3.png"/>
 
 5. On `Triggers`, click, `Add trigger`:
-<img width="900" src="https://github.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/raw/master/imgs/s4-6.png"/>
+<img width="500" src="https://github.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/raw/master/imgs/s4-6.png"/>
 
 6. On `Rule`, select `Create a new rule`, for `Rule name` type `everymin`, for `Rule type` choose `Schedule expression`, type `rate(1 minute)`, then click `Submit`:
 <img width="900" src="https://github.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/raw/master/imgs/s4-7.png"/>
