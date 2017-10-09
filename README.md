@@ -10,7 +10,7 @@ There are some SQS queues on amazon (+/- 10 queues, but the number of queues is 
 As a DevOps team we would like to monitor these queues by providing an automation solution which creates a monitor per queue according to a definition file where the queues are specified. So that we can be alerted whenever something goes wrong with the queues.
 
 # Solution
-Most IT people prefer Slack as comunication platfrom between teams, sending notification to a team Slack channel is a good why to integrate between alarting system and team comunication.
+Most IT people prefer Slack as a communication platform between teams, sending a notification to a team Slack channel is a good way to integrate between the alarting system and team comunication communication.
 
 For definition file, I prefered to use 
 <img width="50" src="https://github.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/raw/master/imgs/yaml.png"/>
@@ -41,17 +41,17 @@ Setup steps:
 - Test it.
 
 ### First, let's start by creating a Slack App:
-1. let's say your have the following Slack channels: `team1`, `team2`,`team3`; where the channel name is the same as your team name defined in the YAML file. if not, let's create one:
+1. let's say you have the following Slack channels: `team1`, `team2`,`team3`; where the channel name is the same as your team name defined in the YAML file. if not, let's create one:
 <img width="500" src="https://github.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/raw/master/imgs/s1-1.png"/>
 
 2. Then click on `+ Add an app`, or go to channel setting if didn't find the link:
 <img width="500" src="https://github.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/raw/master/imgs/s1-2.png"/>
 
-3. This will open Slack Admin panel on the brwoser, you have to have admin permession on your Slack team to access it, click on `Build`:
+3. This will open Slack Admin panel on the browser; you have to have admin permission on your Slack team to access it, click on `Build`:
 
 <img width="300" src="https://github.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/raw/master/imgs/s1-3.png"/>
 
-4. Click `Start Building` then `Create App`, chose your team and name the app `AWS-Watcher`; if you wish to have diffrent name you should change the name from the source code as well:
+4. Click `Start Building` then `Create App`, chose your team and name the app `AWS-Watcher`; if you wish to have a diffrent name you should change the name in the source code as well:
 <img width="500" src="https://github.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/raw/master/imgs/s1-4.png"/>
 
 5. On `Basic Information` click `Incoming Webhooks` under `Add features and functionality`:
@@ -117,7 +117,7 @@ Setup steps:
 7. Click `Save`:
 <img width="900" src="https://github.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/raw/master/imgs/s4-5.png"/>
 
-Congrates, you are ready to test now!!
+Congrats, you are ready to test now!!
 
 ### Finally, Test:
 You can test using AWS Console or AWS CLI, I will show you how to test using the CLI:
