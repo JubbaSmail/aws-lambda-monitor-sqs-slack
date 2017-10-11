@@ -132,7 +132,7 @@ function sendSlackAlert(channel,msg)
 			console.log("Got response: " + res.statusCode);
 			res.on("data", function(chunk) {
 				console.log('BODY: '+chunk);
-				context.done(null, 'done!');
+				//context.done(null, 'done!');
 			});
 		}).on('error', function(e) {
 			context.done('error', e);
