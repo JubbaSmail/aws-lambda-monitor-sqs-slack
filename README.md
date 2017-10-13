@@ -37,7 +37,7 @@ Setup steps:
 - Create Slack App and allow it to post to a team channel.
 - Create AWS Queues then IAM user and get the secret key.
 - Edit the keys in Lambda source code.
-- Create AWS function and delopy the code.
+- Create AWS Lambda function and delopy the code.
 - Test it.
 
 ### First, let's start by creating a Slack App:
