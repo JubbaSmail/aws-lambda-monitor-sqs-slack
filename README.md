@@ -10,7 +10,7 @@ There are some SQS queues on amazon (+/- 10 queues, but the number of queues is 
 As a DevOps team we would like to monitor these queues by providing an automation solution which creates a monitor per queue according to a definition file where the queues are specified. So that we can be alerted whenever something goes wrong with the queues.
 
 # Solution
-Most IT people prefer Slack as a communication platform between teams, sending a notification to a team Slack channel is a good way to integrate between the alarting system and team comunication communication.
+Most IT people prefer Slack as a communication platform between teams, sending a notification to a team Slack channel is a good way to integrate between the alarting system and team comunication.
 
 For definition file, I prefered to use 
 <img width="50" src="https://github.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/raw/master/imgs/yaml.png"/>
