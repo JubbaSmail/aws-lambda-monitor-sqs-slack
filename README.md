@@ -44,7 +44,7 @@ Setup steps:
 1. let's say you have the following Slack channels: `team1`, `team2`,`team3`; where the channel name is the same as your team name defined in the YAML file. if not, let's create one:
 <img width="500" src="https://github.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/raw/master/imgs/s1-1.png"/>
 
-2. Then click on `+ Add an app`, or go to channel setting if didn't find the link:
+2. Then click on `+ Add an app`, or go to channel setting if you didn't find the link:
 <img width="500" src="https://github.com/Ismail-AlJubbah/aws-lambda-monitor-sqs-slack/raw/master/imgs/s1-2.png"/>
 
 3. This will open Slack Admin panel on the browser; you have to have admin permission on your Slack team to access it, click on `Build`:
